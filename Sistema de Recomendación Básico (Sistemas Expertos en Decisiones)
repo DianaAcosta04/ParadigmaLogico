@@ -1,0 +1,20 @@
+Un sistema de recomendación puede sugerir un producto o servicio en función de las preferencias del usuario.
+
+% Preferencias del usuario
+gusta(juan, peliculas).
+gusta(juan, comedia).
+gusta(maria, aventura).
+
+% Sugerencias basadas en preferencias
+sugerir(Usuario, 'Película de comedia') :-
+    gusta(Usuario, peliculas),
+    gusta(Usuario, comedia).
+
+sugerir(Usuario, 'Libro de aventuras') :-
+    gusta(Usuario, aventura).
+
+% Consulta de recomendaciones
+recomendar(Usuario) :-
+    sugerir(Usuario, Recomendacion),
+    write('Se recomienda: '), write(Recomendacion).
+%?- recomendar(juan).
