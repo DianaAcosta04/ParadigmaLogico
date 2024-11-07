@@ -1,23 +1,23 @@
-Paradigma Lógico de Programación
+# Paradigma Lógico de Programación
 
-Parte 1: Introducción y Fundamentos
-Introducción
-El paradigma lógico es un enfoque declarativo donde los programadores definen lo que quieren lograr sin especificar un proceso exacto. A diferencia de otros paradigmas (como el imperativo), se centra en las relaciones y en deducir resultados a partir de datos conocidos. Esto hace que sea ideal para problemas que requieren deducción lógica y búsqueda de soluciones en base a reglas predefinidas.
+## Parte 1: Introducción y Fundamentos
+## Introducción
+### El paradigma lógico es un enfoque declarativo donde los programadores definen lo que quieren lograr sin especificar un proceso exacto. A diferencia de otros paradigmas (como el imperativo), se centra en las relaciones y en deducir resultados a partir de datos conocidos. Esto hace que sea ideal para problemas que requieren deducción lógica y búsqueda de soluciones en base a reglas predefinidas.
 
-Historia y Evolución
-El paradigma lógico tiene sus raíces en la lógica formal y se popularizó con la creación de Prolog en 1972, un lenguaje que fue fundamental en el desarrollo de la inteligencia artificial y el procesamiento del lenguaje natural. Este enfoque permite que el sistema "deduzca" respuestas en lugar de ejecutar instrucciones lineales, lo cual se convirtió en una base para muchas aplicaciones avanzadas.
+## Historia y Evolución
+### El paradigma lógico tiene sus raíces en la lógica formal y se popularizó con la creación de Prolog en 1972, un lenguaje que fue fundamental en el desarrollo de la inteligencia artificial y el procesamiento del lenguaje natural. Este enfoque permite que el sistema "deduzca" respuestas en lugar de ejecutar instrucciones lineales, lo cual se convirtió en una base para muchas aplicaciones avanzadas.
 
-Fundamentos
-Hechos y Reglas: La lógica en este paradigma se construye sobre afirmaciones llamadas hechos (por ejemplo, "Juan es padre de Ana") y reglas que establecen cómo se derivan conclusiones de estos hechos. Este proceso se basa en la lógica de Horn y es el motor de deducción en lenguajes como Prolog.
+## Fundamentos
+### Hechos y Reglas: La lógica en este paradigma se construye sobre afirmaciones llamadas hechos (por ejemplo, "Juan es padre de Ana") y reglas que establecen cómo se derivan conclusiones de estos hechos. Este proceso se basa en la lógica de Horn y es el motor de deducción en lenguajes como Prolog.
 
-Unificación: Es el proceso mediante el cual el sistema busca coincidencias en hechos y reglas, identificando variables y aplicándolas a condiciones dadas para resolver consultas.
+### Unificación: Es el proceso mediante el cual el sistema busca coincidencias en hechos y reglas, identificando variables y aplicándolas a condiciones dadas para resolver consultas.
 
-Resolución: Técnica por la cual el sistema aplica reglas y hechos para responder a una pregunta o consulta. Este proceso permite que el sistema derive conclusiones complejas a partir de información conocida.
+### Resolución: Técnica por la cual el sistema aplica reglas y hechos para responder a una pregunta o consulta. Este proceso permite que el sistema derive conclusiones complejas a partir de información conocida.
 
-Ejemplo de Hechos y Reglas en Prolog:
+## Ejemplo de Hechos y Reglas en Prolog:
 
-prolog
-Copiar código
+
+``` prolog
 % Hechos sobre relaciones familiares
 padre(juan, ana).
 padre(juan, pedro).
@@ -29,6 +29,7 @@ abuelo(X, Y) :- padre(X, Z), padre(Z, Y).
 % Consulta para obtener el abuelo de Ana
 ?- abuelo(X, ana).
 % Resultado esperado: X = carlos.
+```
 Explicación del Código:
 
 Hechos: padre(juan, ana). establece relaciones básicas.
