@@ -1,0 +1,22 @@
+Un sistema experto puede deducir una enfermedad en función de síntomas. Este ejemplo muestra cómo un conjunto de reglas puede inferir una posible enfermedad a partir de hechos.
+
+% Definición de síntomas
+symptom(paciente, fiebre).
+symptom(paciente, dolor_cabeza).
+symptom(paciente, tos).
+
+% Reglas para enfermedades
+disease(gripe) :-
+    symptom(_, fiebre),
+    symptom(_, dolor_cabeza),
+    symptom(_, tos).
+
+disease(resfriado) :-
+    symptom(_, fiebre),
+    symptom(_, dolor_cabeza),
+    \+ symptom(_, tos). % Negación lógica (no tiene tos)
+
+% Consulta de diagnóstico
+diagnose(X) :-
+    disease(X),
+    write('El paciente podría tener: '), write(X).
