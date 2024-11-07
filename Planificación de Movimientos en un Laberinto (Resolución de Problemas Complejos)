@@ -1,0 +1,20 @@
+Este código simula cómo un robot puede encontrar el camino de salida en un laberinto usando reglas lógicas y búsqueda recursiva.
+
+% Definición de caminos del laberinto
+camino(a, b).
+camino(b, c).
+camino(c, d).
+camino(d, e). % La salida está en el nodo e
+
+% Regla para encontrar el camino de un lugar a otro
+ruta(X, Y, Camino) :- ruta_aux(X, Y, [X], Camino).
+
+% Búsqueda recursiva del camino
+ruta_aux(X, X, Camino, Camino).
+ruta_aux(X, Y, Visitados, Camino) :-
+    camino(X, Z),
+    \+ member(Z, Visitados),
+    ruta_aux(Z, Y, [Z|Visitados], Camino).
+
+%?- ruta(a, e, Camino). (consulta)
+%Salida esperada: Camino = [a, b, c, d, e]
