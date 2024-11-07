@@ -1,0 +1,17 @@
+En este ejemplo, Prolog analiza las relaciones jerárquicas dentro de una organización para responder preguntas sobre quién es el superior de quién.
+
+% Hechos que definen la jerarquía
+superior(ana, luis).
+superior(ana, maria).
+superior(luis, pedro).
+superior(maria, juan).
+
+% Regla para determinar si alguien es el jefe directo o indirecto
+es_jefe_directo_o_indirecto(Jefe, Empleado) :-
+    superior(Jefe, Empleado).
+
+es_jefe_directo_o_indirecto(Jefe, Empleado) :-
+    superior(Jefe, Intermedio),
+    es_jefe_directo_o_indirecto(Intermedio, Empleado).
+
+%consulta: ?- es_jefe_directo_o_indirecto(ana, pedro).
