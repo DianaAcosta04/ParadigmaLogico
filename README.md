@@ -17,31 +17,68 @@ Resolución: Técnica por la cual el sistema aplica reglas y hechos para respond
 ## Ejemplo de Hechos y Reglas en Prolog:
 
 ``` prolog
-% Hechos sobre relaciones familiares
+% Definir hechos sobre relaciones de parentesco
 padre(juan, ana).
 padre(juan, pedro).
 padre(carlos, juan).
+madre(maria, ana).
+madre(maria, pedro).
+madre(laura, juan).
+hermano(pedro, ana).
+hermana(ana, pedro).
 
 % Regla que define una relación de abuelo
 abuelo(X, Y) :- padre(X, Z), padre(Z, Y).
 
-% Consulta para obtener el abuelo de Ana
+% Regla que define una relación de abuela
+abuela(X, Y) :- madre(X, Z), padre(Z, Y).
+abuela(X, Y) :- madre(X, Z), madre(Z, Y).
+
+% Regla que define una relación de nieto
+nieto(X, Y) :- abuelo(Y, X).
+nieto(X, Y) :- abuela(Y, X).
+
+% Regla que define una relación de tío
+tio(X, Y) :- hermano(X, Z), padre(Z, Y).
+tio(X, Y) :- hermano(X, Z), madre(Z, Y).
+
+% Regla para determinar si alguien es hermano o hermana
+hermanos(X, Y) :- padre(P, X), padre(P, Y), X \= Y.
+hermanos(X, Y) :- madre(M, X), madre(M, Y), X \= Y.
+
+% Ejemplo de consultas:
+% 1. ¿Quién es el abuelo de Ana?
 ?- abuelo(X, ana).
 % Resultado esperado: X = carlos.
+
+% 2. ¿Quién es la abuela de Pedro?
+?- abuela(X, pedro).
+% Resultado esperado: X = laura.
+
+% 3. ¿Quién es el nieto de Laura?
+?- nieto(X, laura).
+% Resultado esperado: X = ana, X = pedro.
+
+% 4. ¿Quién es el tío de Ana?
+?- tio(X, ana).
+% Resultado esperado: X = pedro.
 ```
 
 Explicación del Código:
+Hechos: Se han agregado relaciones de parentesco, incluyendo madres e hijos (por ejemplo, madre(maria, ana)) y hermanos/hermanas (como hermano(pedro, ana)).
 
-Hechos: padre(juan, ana). establece relaciones básicas.  
-Regla: abuelo(X, Y) define que X es abuelo de Y si X es padre de Z y Z es padre de Y.  
-Consulta: abuelo(X, ana). permite deducir que Carlos es el abuelo de Ana.
+Reglas:
 
-## Lenguajes y Ejemplos Prácticos
-## Lenguajes de Programación Lógica
-Entre los lenguajes lógicos, Prolog es el más destacado. Otros lenguajes incluyen Datalog y Mercury. Estos lenguajes se utilizan en aplicaciones donde la lógica es esencial, como en bases de conocimiento e inteligencia artificial.
-
-## Ejemplo Práctico en Prolog
-Aquí se presenta un ejemplo de cómo Prolog puede ser usado para deducir relaciones familiares. Esta estructura de datos permite hacer preguntas complejas sobre la familia sin necesidad de instrucciones explícitas.
+abuelo(X, Y): establece que X es abuelo de Y si X es padre de alguien Z, quien a su vez es padre de Y.
+abuela(X, Y): establece que X es abuela de Y si X es madre de alguien Z, quien es padre o madre de Y.
+nieto(X, Y): establece que X es nieto de Y si Y es abuelo o abuela de X.
+tio(X, Y): establece que X es tío de Y si X es hermano de uno de los padres de Y.
+hermanos(X, Y): indica que X y Y son hermanos si comparten al menos un padre o madre y no son la misma persona.
+Ejemplos de Consultas:
+abuelo(X, ana): Prolog encontrará que el abuelo de Ana es Carlos.
+abuela(X, pedro): Consulta para determinar que la abuela de Pedro es Laura.
+nieto(X, laura): Encuentra todos los nietos de Laura (en este caso, Ana y Pedro).
+tio(X, ana): Determina que el tío de Ana es Pedro, basado en la relación de hermanos.
 
 ``` prolog
 % Definir hechos sobre relaciones de parentesco
